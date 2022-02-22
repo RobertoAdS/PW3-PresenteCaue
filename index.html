@@ -1,0 +1,65 @@
+<head>
+  <title>Meu sitezinho bacana de Tailwind!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <nav class="bg-neutral-600 text-white flex space-x-2 p-3">
+    <button>Home</button>
+    <div class="relative">
+      <div id="dropdown-content" class="hidden top-8 p-2 rounded absolute bg-white text-black">
+        Hello World!
+      </div>
+      <button id="dropdown">Dropdown</button>
+    </div>
+  </div>
+</nav>
+  <div class="bg-neutral-500 text-white h-screen text-center p-4">
+    <button id="prev" class="top-1/2 left-48 w-12 h-12 flex items-center justify-center rounded-full absolute hover:bg-black/30 font-bold">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+      </svg>
+    </button>
+    <div id="content" class="flex items-center justify-center text-neutral-800 text-3xl">
+      <img id="slide-image" class="w-[1280px] h-[720px] object-cover shadow-md rounded-md" src="https://static.wikia.nocookie.net/leagueoflegends/images/b/b1/Rakan_iGSkin.jpg/revision/latest?cb=20190402234427" alt="Rakan" />
+    </div>
+    <button id="next" class="top-1/2 right-48 w-12 h-12 flex items-center justify-center rounded-full absolute hover:bg-black/30 font-bold">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+</body>
+<script>
+  const previousButton = document.getElementById("prev");
+  const nextButton = document.getElementById("next");
+  const slideImage = document.getElementById("slide-image");
+  const dropdownButton = document.getElementById("dropdown");
+  const dropdownContent = document.getElementById("dropdown-content");
+
+  const imageSourceList = [
+    "https://static.wikia.nocookie.net/leagueoflegends/images/b/b1/Rakan_iGSkin.jpg/revision/latest?cb=20190402234427",
+    "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rakan_1.jpg",
+    "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Rakan_5.jpg"
+  ];
+
+  var currentSlide = 0;
+
+  previousButton.addEventListener("click", () => {
+    if (currentSlide > 0) {
+      currentSlide = currentSlide - 1;
+      console.log(slideImage.src);
+      slideImage.src = imageSourceList[currentSlide];
+    }
+  });
+
+  nextButton.addEventListener("click", () => {
+    if (currentSlide < imageSourceList.length - 1) {
+      currentSlide = currentSlide + 1;
+      slideImage.src = imageSourceList[currentSlide];
+    }
+  });
+
+  dropdownButton.addEventListener("click", () => {
+    dropdownContent.classList.toggle("hidden");
+  });
+</script>
